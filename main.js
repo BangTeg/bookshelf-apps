@@ -76,12 +76,17 @@ document.addEventListener("DOMContentLoaded", function () {
     function toggleBookStatus(book, isComplete) {
       const shelfList = isComplete ? incompleteBookshelfList : completeBookshelfList;
       const oppositeShelfList = isComplete ? completeBookshelfList : incompleteBookshelfList;
-  
+    
       const bookItem = createBookItem(book, !isComplete);
-      oppositeShelfList.appendChild(bookItem);
-  
-      shelfList.removeChild(document.getElementById(book.id.toString()));
-      updateBookshelfStorage();
+    
+      const bookElement = document.getElementById(book.id.toString());
+      if (bookElement) {
+        oppositeShelfList.appendChild(bookItem);
+        shelfList.removeChild(bookElement);
+        updateBookshelfStorage();
+      } else {
+        console.error(`Element dengan ID ${book.id} tidak ditemukan.`);
+      }
     }
   
     function deleteBook(book, isComplete) {
