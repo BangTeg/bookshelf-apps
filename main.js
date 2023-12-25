@@ -8,7 +8,7 @@ function addBook() {
   const inputBookTitle = document.getElementById('inputBookTitle');
   const authorBook = document.getElementById('inputBookAuthor');
   const yearBook = document.getElementById('inputBookYear');
-  // const parsedYear = parseInt(yearBook.value, 10);
+  const parsedYear = parseInt(yearBook.value, 10);
   const isCompleted = document.getElementById('inputBookIsComplete');
 
   const generatedID = generateId();
@@ -17,7 +17,7 @@ function addBook() {
     inputBookTitle.value,
     authorBook.value,
     yearBook.value,
-    // parsedYear,
+    parsedYear,
     isCompleted.checked
   );
 
