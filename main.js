@@ -37,7 +37,7 @@ function generateBooksObject(id, title, author, year, isCompleted) {
     title,
     author,
     year: parseInt(year, 10),
-    isCompleted: isCompleted,
+    isComplete: isCompleted,
   };
 }
 
