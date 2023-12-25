@@ -8,7 +8,7 @@ function addBook() {
   const inputBookTitle = document.getElementById('inputBookTitle');
   const authorBook = document.getElementById('inputBookAuthor');
   const yearBook = document.getElementById('inputBookYear');
-  const parsedYear = parseInt(yearBook.value, 10);
+  // const parsedYear = parseInt(yearBook.value, 10);
   const isCompleted = document.getElementById('inputBookIsComplete');
 
   const generatedID = generateId();
@@ -17,7 +17,7 @@ function addBook() {
     inputBookTitle.value,
     authorBook.value,
     yearBook.value,
-    parsedYear,
+    // parsedYear,
     isCompleted.checked
   );
 
@@ -36,8 +36,8 @@ function generateBooksObject(id, title, author, year, isCompleted) {
     id,
     title,
     author,
-    year,
-    isCompleted,
+    year: parseInt(year, 10),
+    isCompleted: isCompleted,
   };
 }
 
@@ -295,21 +295,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const searchBook = document.getElementById('searchBook');
 
-  // searchBook.addEventListener('submit', function (event) {
-  //   event.preventDefault();
-  //   const searchBook = document
-  //     .getElementById('searchBookTitle')
-  //     .value.toLowerCase();
-  //   const listBook = document.querySelectorAll('.book_item ');
-  //   for (const book of listBook) {
-  //     if (book.innerText.toLowerCase().includes(searchBook)) {
-  //       book.parentElement.style.display = 'block';
-  //     } else {
-  //       book.parentElement.style.display = 'none';
-  //     }
-  //   }
-  // });
-
   searchBook.addEventListener('submit', function (event) {
     event.preventDefault();
     const searchBookTitle = document.getElementById('searchBookTitle').value.toLowerCase();
@@ -317,12 +302,11 @@ document.addEventListener('DOMContentLoaded', function () {
   
     for (const book of listBook) {
       const bookTitle = book.querySelector('h3').innerText.toLowerCase();
-      const bookContainer = book.parentElement;
   
       if (bookTitle.includes(searchBookTitle)) {
-        bookContainer.style.display = 'block';
+        book.style.display = 'block';
       } else {
-        bookContainer.style.display = 'none';
+        book.style.display = 'none';
       }
     }
   });
