@@ -3,23 +3,20 @@ const RENDER_EVENT = 'render-book';
 const SAVED_EVENT = 'saved-book';
 const STORAGE_KEY = 'BOOKSHELF_APPS';
 
+// Membuat Fungsi yang mengambil dari objek dari render book
 function addBook() {
   const inputBookTitle = document.getElementById('inputBookTitle');
   const authorBook = document.getElementById('inputBookAuthor');
   const yearBook = document.getElementById('inputBookYear');
   const parsedYear = parseInt(yearBook.value, 10);
-  const statusText = document.getElementById('statusText');
   const isCompleted = document.getElementById('inputBookIsComplete');
-
-  isCompleted.addEventListener('change', function () {
-    statusText.innerText = isCompleted.checked ? 'Selesai Dibaca' : 'Belum Selesai Dibaca';
-  });
 
   const generatedID = generateId();
   const bookObject = generateBooksObject(
     generatedID,
     inputBookTitle.value,
     authorBook.value,
+    yearBook.value,
     parsedYear,
     isCompleted.checked
   );
@@ -113,6 +110,7 @@ function makeBook(bookObject) {
 }
 
 //fungsi Render_EVENT
+
 document.addEventListener(RENDER_EVENT, function () {
   const uncompleteBookList = document.getElementById('incompleteBookshelfList');
   uncompleteBookList.innerHTML = '';
@@ -283,9 +281,6 @@ document.addEventListener(SAVED_EVENT, function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   const submitForm = document.getElementById('inputBook');
-  const searchBook = document.getElementById('searchBook');
-  const deleteButton = document.getElementById('btn-delete');
-
   submitForm.addEventListener('submit', function (event) {
     event.preventDefault();
     addBook();
@@ -298,20 +293,40 @@ document.addEventListener('DOMContentLoaded', function () {
     DeleteInputUser();
   });
 
+  const searchBook = document.getElementById('searchBook');
+
+  // searchBook.addEventListener('submit', function (event) {
+  //   event.preventDefault();
+  //   const searchBook = document
+  //     .getElementById('searchBookTitle')
+  //     .value.toLowerCase();
+  //   const listBook = document.querySelectorAll('.book_item ');
+  //   for (const book of listBook) {
+  //     if (book.innerText.toLowerCase().includes(searchBook)) {
+  //       book.parentElement.style.display = 'block';
+  //     } else {
+  //       book.parentElement.style.display = 'none';
+  //     }
+  //   }
+  // });
+
   searchBook.addEventListener('submit', function (event) {
     event.preventDefault();
-    const searchBook = document
-      .getElementById('searchBookTitle')
-      .value.toLowerCase();
-    const listBook = document.querySelectorAll('.book_item ');
+    const searchBookTitle = document.getElementById('searchBookTitle').value.toLowerCase();
+    const listBook = document.querySelectorAll('.book_item');
+  
     for (const book of listBook) {
-      if (book.innerText.toLowerCase().includes(searchBook)) {
-        book.parentElement.style.display = 'block';
+      const bookTitle = book.querySelector('h3').innerText.toLowerCase();
+      const bookContainer = book.parentElement;
+  
+      if (bookTitle.includes(searchBookTitle)) {
+        bookContainer.style.display = 'block';
       } else {
-        book.parentElement.style.display = 'none';
+        bookContainer.style.display = 'none';
       }
     }
   });
+  
 
   fillYearDropdown();
 
@@ -326,36 +341,6 @@ document.addEventListener('DOMContentLoaded', function () {
       yearDropdown.add(option);
     }
   }
-
-  const deleteBookModal = document.getElementById('deleteBookModal');
-  const confirmDeleteButton = document.getElementById('confirmDelete');
-  const cancelDeleteButton = document.getElementById('cancelDelete');
-
-  deleteBookModal.style.display = 'none';
-
-  function showDeleteConfirmationModal(bookId) {
-    deleteBookModal.style.display = 'block';
-
-    confirmDeleteButton.addEventListener('click', function () {
-      deleteBook(bookId);
-      deleteBookModal.style.display = 'none';
-    });
-
-    cancelDeleteButton.addEventListener('click', function () {
-      deleteBookModal.style.display = 'none';
-    });
-
-    window.onclick = function (event) {
-      if (event.target == deleteBookModal) {
-        deleteBookModal.style.display = 'none';
-      }
-    };
-  }
-
-  deleteButton.addEventListener('click', function () {
-    const bookId = parseInt(bookItem.id.split('-')[1]);
-    showDeleteConfirmationModal(bookId);
-  });
 
   if (isStorageExist()) {
     loadDataFromStorage();
