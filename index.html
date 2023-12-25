@@ -34,7 +34,6 @@
         <div class="input">
           <label for="inputBookYear">Tahun Terbit</label>
           <div class = "select-wrapper">
-            <!-- <input id="inputBookYear" placeholder="E.g 2008" type="number" required> -->
           <select id="inputBookYear" required></select>
           </div>
         </div>
@@ -42,9 +41,7 @@
           <label for="inputBookIsComplete">Selesai dibaca</label>
           <input id="inputBookIsComplete" type="checkbox">
         </div>
-        <button id="bookSubmit" type="submit" class="button-book">
-          Masukkan Buku ke list <span id="statusText">Belum Selesai Dibaca</span>
-        </button>
+        <button id="bookSubmit" type="submit" class="button-book">Submit Buku</button>
       </form>
     </section>
 
@@ -57,53 +54,45 @@
         ">Cari</button>
       </form>
     </section>
-  
-  <section class="book_shelf">
-    <h2>Belum selesai dibaca</h2>
-    
-    <div id="incompleteBookshelfList" class="book_list">
-     <!-- <article class="book_item">
-       <h3>Book Title</h3>
-       <p>Penulis: John Doe</p>
-       <p>Tahun: 2002</p>
-  
-       <div class="action">
-         <button class="green">Selesai dibaca</button>
-         <button class="red">Hapus buku</button>
-       </div>
-     </article> -->
-    </div>
-  </section>
-  
-  <section class="book_shelf">
-    <h2>Selesai dibaca</h2>
-    
-    <div id="completeBookshelfList" class="book_list">
-     <!-- <article class="book_item">
-       <h3>Book Title</h3>
-       <p>Penulis: John Doe</p>
-       <p>Tahun: 2002</p>
-      
-       <div class="action">
-         <button class="blue">Belum selesai di Baca</button>
-         <button class="red">Hapus buku</button>
-       </div>
-     </article> -->
-    </div>
-  </section>
-</main>
 
-<script src="main.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <section class="book_shelf">
+      <h2>Belum selesai dibaca</h2>
+
+      <div id="incompleteBookshelfList" class="book_list">
+        <!--      <article class="book_item">-->
+        <!--        <h3>Book Title</h3>-->
+        <!--        <p>Penulis: John Doe</p>-->
+        <!--        <p>Tahun: 2002</p>-->
+        <!--    -->
+        <!--        <div class="action">-->
+        <!--          <button class="green">Selesai dibaca</button>-->
+        <!--          <button class="red">Hapus buku</button>-->
+        <!--        </div>-->
+        <!--      </article>-->
+      </div>
+    </section>
+
+    <section class="book_shelf">
+      <h2>Selesai dibaca</h2>
+
+      <div id="completeBookshelfList" class="book_list">
+        <!--      <article class="book_item">-->
+        <!--        <h3>Book Title</h3>-->
+        <!--        <p>Penulis: John Doe</p>-->
+        <!--        <p>Tahun: 2002</p>-->
+        <!--        -->
+        <!--        <div class="action">-->
+        <!--          <button class="green">Belum selesai di Baca</button>-->
+        <!--          <button class="red">Hapus buku</button>-->
+        <!--        </div>-->
+        <!--      </article>-->
+      </div>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 </body>
-<div id="deleteBookModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeModal">&times;</span>
-    <h2>Konfirmasi Penghapusan</h2>
-    <p>Apakah Anda yakin ingin menghapus buku ini?</p>
-    <button id="confirmDelete">Hapus</button>
-    <button id="cancelDelete">Batal</button>
-  </div>
-</div>
+
 </html>
