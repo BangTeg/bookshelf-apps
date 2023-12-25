@@ -3,11 +3,11 @@ const RENDER_EVENT = 'render-book';
 const SAVED_EVENT = 'saved-book';
 const STORAGE_KEY = 'BOOKSHELF_APPS';
 
-// Membuat Fungsi yang mengambil dari objek dari render book
 function addBook() {
   const inputBookTitle = document.getElementById('inputBookTitle');
   const authorBook = document.getElementById('inputBookAuthor');
   const yearBook = document.getElementById('inputBookYear');
+  const parsedYear = parseInt(yearBook.value, 10);
   const statusText = document.getElementById('statusText');
   const isCompleted = document.getElementById('inputBookIsComplete');
 
@@ -20,7 +20,7 @@ function addBook() {
     generatedID,
     inputBookTitle.value,
     authorBook.value,
-    yearBook.value,
+    parsedYear,
     isCompleted.checked
   );
 
@@ -321,8 +321,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (let year = currentYear; year >= 1900; year--) {
       const option = document.createElement('option');
-      option.value = year;
-      option.text = year;
+      option.value = year.toString();
+      option.text = year.toString();
       yearDropdown.add(option);
     }
   }
